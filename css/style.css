@@ -302,6 +302,7 @@ div.selected {
     line-height: 150%;
     unicode-bidi: plaintext;
     text-align: start;
+    font-size: 22px;
 }
 .default .reply_to,
 .default .media_wrap {
