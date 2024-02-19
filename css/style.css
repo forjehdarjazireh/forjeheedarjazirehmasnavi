@@ -90,7 +90,8 @@ pre {
 }
 .page_body {
     padding-top: 64px;
-    width: 480px;
+/*    width: 480px; */
+    width: 720px;
     margin: 0 auto;
 }
 .page_about {
