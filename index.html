@@ -272,48 +272,17 @@
 -->
 
 <!-- count the number of visitors -->
-<div>Current count: <span id="count" class="count">—</span></div>
-
-<button id="incBtn">Increment (click)</button>
-<button id="visitBtn">Record visit</button>
-<button id="resetBtn">Reset (dev)</button>
+<p>You are visitor number: <span id="counter"></span></p>
 
 <script>
-const BASE = window.location.origin; // adjust if server hosted elsewhere
+// Replace "mygithubpage" with a unique namespace
+// fetch('https://api.countapi.xyz/hit/mygithubpage/visits')
+fetch('https://api.countapi.xyz/hit/forjehdarjazireh.github.io/forjeheedarjazirehmasnavi/visits')
 
-async function fetchCount() {
-const r = await fetch(BASE + '/count');
-const data = await r.json();
-document.getElementById('count').textContent = data.count;
-}
-
-async function increment(amount = 1) {
-const r = await fetch(BASE + '/increment', {
-method: 'POST',
-headers: {'Content-Type': 'application/json'},
-body: JSON.stringify({ amount })
+.then(res => res.json())
+.then(res => {
+document.getElementById('counter').innerText = res.value;
 });
-const data = await r.json();
-document.getElementById('count').textContent = data.count;
-}
-
-async function reset() {
-const r = await fetch(BASE + '/reset', { method: 'POST' });
-const data = await r.json();
-document.getElementById('count').textContent = data.count;
-}
-
-document.getElementById('incBtn').addEventListener('click', () => increment(1));
-document.getElementById('visitBtn').addEventListener('click', () => increment(1));
-document.getElementById('resetBtn').addEventListener('click', () => {
-if (confirm('Reset counter to zero?')) reset();
-});
-
-// fetch initial count on load
-fetchCount();
-
-// Optionally record a visit automatically when the page is loaded:
-// window.addEventListener('load', () => increment(1));
 </script>
 
 
