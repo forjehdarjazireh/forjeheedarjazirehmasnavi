@@ -271,8 +271,53 @@
 <a style="font-size: 30px; font-color: #ff3336;" href='quran/zekr_with_java_portable.zip'>نرم افزار ذکر را نصب کنید</a>
 -->
 
+<!-- count the number of visitors -->
+<div>Current count: <span id="count" class="count">—</span></div>
+
+<button id="incBtn">Increment (click)</button>
+<button id="visitBtn">Record visit</button>
+<button id="resetBtn">Reset (dev)</button>
+
+<script>
+const BASE = window.location.origin; // adjust if server hosted elsewhere
+
+async function fetchCount() {
+const r = await fetch(BASE + '/count');
+const data = await r.json();
+document.getElementById('count').textContent = data.count;
+}
+
+async function increment(amount = 1) {
+const r = await fetch(BASE + '/increment', {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ amount })
+});
+const data = await r.json();
+document.getElementById('count').textContent = data.count;
+}
+
+async function reset() {
+const r = await fetch(BASE + '/reset', { method: 'POST' });
+const data = await r.json();
+document.getElementById('count').textContent = data.count;
+}
+
+document.getElementById('incBtn').addEventListener('click', () => increment(1));
+document.getElementById('visitBtn').addEventListener('click', () => increment(1));
+document.getElementById('resetBtn').addEventListener('click', () => {
+if (confirm('Reset counter to zero?')) reset();
+});
+
+// fetch initial count on load
+fetchCount();
+
+// Optionally record a visit automatically when the page is loaded:
+// window.addEventListener('load', () => increment(1));
+</script>
 
 
 </pre>
 
-</body></html>
+</body>
+</html>
