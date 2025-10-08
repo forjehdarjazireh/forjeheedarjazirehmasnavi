@@ -26,7 +26,7 @@
                 text-decoration: underline;
             }
 
-        div {
+            div {
             white-space: pre-wrap;
             white-space: -moz-pre-wrap;
             white-space: -pre-wrap;
@@ -34,8 +34,14 @@
             word-wrap: break-word;
             margin-top: 0px;
             padding-top: 0px;
-        }
-
+            }
+            #counter {
+            font-size: 2em;
+            color: #0078d7;
+            font-weight: bold;
+            margin-top: 10px;
+            }
+    
     <!--
 		@page { margin: 0.79in }
 		P { margin-bottom: 0.08in }
@@ -274,6 +280,31 @@
 
 <!-- count the number of visitors -->
 <p style="font-size: 30px; font-color: #000080;">تعداد دفعاتی که این سایت دیده شده است: <span id="counter"></span></p>
+<div id="counter">Loading...</div>
+
+<script>
+// Replace these with your own namespace and key
+const NAMESPACE = "forjehdarjazireh";  // can be your GitHub username
+const KEY = "ret-cms-page";           // unique key for this page
+
+const url = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+
+async function updateCounter() {
+try {
+const res = await fetch(url, { cache: "no-store" });
+const data = await res.json();
+document.getElementById("counter").textContent = data.value + " times";
+} catch (err) {
+console.error(err);
+document.getElementById("counter").textContent = "Unavailable";
+}
+}
+
+updateCounter();
+</script>
+
+
+<!--
 <script>
 // Replace "mygithubpage" with a unique namespace
 // fetch('https://api.countapi.xyz/hit/mygithubpage/visits')
@@ -284,7 +315,7 @@ fetch('https://api.countapi.xyz/hit/forjehdarjazireh_forjeheedarjazirehmasnavi/v
 document.getElementById('counter').innerText = res.value;
 });
 </script>
-
+-->
 
 </pre>
 
