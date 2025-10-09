@@ -42,8 +42,10 @@
             margin-top: 10px;
             }
             .arabic-numbers {
-            unicode-bidi: bidi-override;
-            <!-- direction: rtl; -->
+            font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+            font-size: 2em;
+            direction: rtl;
+            text-align: right;
             }
     
     <!--
@@ -283,7 +285,7 @@
 -->
 
 <!-- count the number of visitors -->
-<cite style="font-size: 30px; font-color: #0000FF;">تعداد دفعاتی که این سایت دیده شده است: <span class="arabic-numbers" lang="ar" id="count">
+<cite style="font-size: 30px; font-color: #0000FF;">تعداد دفعاتی که این سایت دیده شده است: <span class="arabic-numbers" id="count">
 </span></cite>
 
 <script>
@@ -296,6 +298,17 @@ document.getElementById("count").innerText = data.count;
 console.error(err);
 document.getElementById("count").innerText = "Unavailable";
 });
+
+function toArabicDigits(num) {
+return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+// Get the element by id
+const countElement = document.getElementById("count");
+
+// Convert its content to Arabic numerals
+const number = parseInt(countElement.textContent, 10);
+countElement.textContent = toArabicDigits(number);
 </script>
 
 
