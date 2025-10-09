@@ -286,20 +286,10 @@
 -->
 
 <!-- count the number of visitors -->
-<cite class="arabic-numbers">تعداد دفعاتی که این سایت دیده شده است: <span id="count">555
+<cite class="arabic-numbers">تعداد دفعاتی که این سایت دیده شده است: <span id="count">
 </span></cite>
 
 <script>
-function toArabicDigits(num) {
-return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
-}
-
-// Get the element by id
-const countElement = document.getElementById("count");
-
-// Convert its content to Arabic numerals
-const number = parseInt(countElement.textContent, 10);
-countElement.textContent = toArabicDigits(number);
 
 fetch("https://forjehdarjazireh.netlify.app/.netlify/functions/counter?page=home")
 .then(res => res.json())
@@ -310,6 +300,23 @@ document.getElementById("count").innerText = data.count;
 console.error(err);
 document.getElementById("count").innerText = "Unavailable";
 });
+
+function sleep(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+await sleep(5000); // Pause for 5 seconds
+ 
+function toArabicDigits(num) {
+return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+// Get the element by id
+const countElement = document.getElementById("count");
+
+// Convert its content to Arabic numerals
+const number = parseInt(countElement.textContent, 10);
+countElement.textContent = toArabicDigits(number);
 
 </script>
 
