@@ -1,6 +1,6 @@
 // Simple page view counter (works on Netlify)
 export async function handler(event, context) {
-  const kvUrl = 'https://api.npoint.io/your-json-id'; // We'll create this below
+  const kvUrl = 'https://api.npoint.io/storage'; // We'll create this below
   const response = await fetch(kvUrl);
   const data = await response.json();
 
