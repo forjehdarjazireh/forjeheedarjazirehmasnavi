@@ -305,7 +305,8 @@ function sleep(ms) {
 return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-await sleep(5000); // Pause for 5 seconds
+// Pause for 5 seconds
+//await sleep(5000);
  
 function toArabicDigits(num) {
 return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
