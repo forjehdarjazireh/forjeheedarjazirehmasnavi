@@ -279,29 +279,18 @@
 -->
 
 <!-- count the number of visitors -->
-<p style="font-size: 30px; font-color: #000080;">تعداد دفعاتی که این سایت دیده شده است: <span id="counter"></span></p>
+<p style="font-size: 30px; font-color: #000080;">تعداد دفعاتی که این سایت دیده شده است: <span id="count"></span></p>
 
 <script>
-// Replace these with your own namespace and key
-const NAMESPACE = "forjehdarjazireh";  // can be your GitHub username
-const KEY = "ret-cms-page";           // unique key for this page
-
-// const url = 'https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}';
-// const url = 'https://api.countapi.store/hit/${NAMESPACE}/${KEY}';
-const url = 'https://api.countapi.xyz/get/${NAMESPACE}/${KEY}';
-
-async function updateCounter() {
-try {
-const res = await fetch(url, { cache: "no-store" });
-const data = await res.json();
-document.getElementById("counter").textContent = data.value + " times";
-} catch (err) {
+fetch("https://forjehdarjazireh.netlify.app/.netlify/functions/counter?page=home")
+.then(res => res.json())
+.then(data => {
+document.getElementById("count").innerText = data.count;
+})
+.catch(err => {
 console.error(err);
-document.getElementById("counter").textContent = "Unavailable";
-}
-}
-
-updateCounter();
+document.getElementById("count").innerText = "Unavailable";
+});
 </script>
 
 
