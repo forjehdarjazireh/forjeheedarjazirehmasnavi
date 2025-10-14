@@ -42,10 +42,10 @@
             margin-top: 10px;
             }
             .arabic-numbers {
-            font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
-            direction: rtl;
-            text-align: right;
-            font-size: 30px;
+            font-family: 'Scheherazade New', 'Amiri', serif;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 1.5em;
             font-color: #0000FF;
             }
     
@@ -321,6 +321,27 @@
 <cite class="arabic-numbers">تعداد دفعاتی که این سایت دیده شده است: <span id="count">
 </span></cite>
 
+
+<script>
+// Replace this with your own GitHub Pages URL
+const apiURL = "https://hits.sh/forjehdarjazireh.github.io.json?style=flat-square";
+
+// Fetch the JSON data for your hits count
+fetch(apiURL)
+.then(response => response.json())
+.then(data => {
+const count = data.count;
+// Convert the number to Arabic-Indic numerals
+const arabicNumber = count.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+document.getElementById("count").textContent = arabicNumber;
+})
+.catch(() => {
+document.getElementById("count").textContent = "تعذر التحميل";
+});
+</script>
+
+
+<!--
 <script>
 
 fetch("https://forjehdarjazireh.netlify.app/.netlify/functions/counter?page=home")
@@ -352,6 +373,7 @@ const number = parseInt(countElement.textContent, 10);
 countElement.textContent = toArabicDigits(number);
 
 </script>
+-->
 
 
 </pre>
