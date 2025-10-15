@@ -335,6 +335,29 @@
 
 
 <script>
+async function updateVisitCount() {
+const url = "https://hits.sh/forjehdarjazireh.github.io/forjeheedarjazirehmasnavi.json";
+try {
+const res = await fetch(url);
+const data = await res.json();
+const count = data.hits;
+
+// Convert to Arabic numerals
+const arabicDigits = count.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+document.getElementById("count").textContent = arabicDigits;
+} catch (e) {
+console.error("Error fetching visit count:", e);
+document.getElementById("visit-count").textContent = "تعذر التحميل";
+}
+}
+
+updateVisitCount();
+</script>
+
+
+
+<!--
+<script>
 // Replace this with your own GitHub Pages URL
 const apiURL = "https://hits.sh/forjehdarjazireh.github.io/forjeheedarjazirehmasnavi/.json";
 
@@ -351,7 +374,7 @@ document.getElementById("count").textContent = arabicNumber;
 document.getElementById("count").textContent = "تعذر التحميل";
 });
 </script>
-
+-->
 
 <!--
 <script>
