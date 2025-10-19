@@ -48,6 +48,13 @@
             font-size: 20px;
             font-color: #0000FF;
             }
+            form { display: flex; flex-direction: column; gap: 12px; }
+            label { font-weight: 600; }
+            input, textarea { padding: 8px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+            textarea { min-height: 150px; resize: vertical; }
+            button { background-color: #007acc; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+            button:hover { background-color: #005fa3; }
+            .msg { margin-top: 10px; font-size: 0.95rem; color: green; }
     
     <!--
 		@page { margin: 0.79in }
@@ -330,6 +337,48 @@
 <cite class="arabic-numbers" style="font-size: 20px">تعداد دفعاتی که این سایت از چهارشنبه ۲۳ مهر ۱۴۰۴ تا بحال دیده شده است:</cite>
 <cite><img src="https://hits.sh/forjehdarjazireh.github.io/forjeheedarjazirehmasnavi.svg?style=flat-square&font-size=20px&label=Visits&color=007ec6" alt="Website visits">
 </cite>
+
+<h1>Send a Question</h1>
+<p>Use the form below to send your question directly to the site owner.</p>
+
+<form id="questionForm" action="https://formspree.io/f/myznvjke" method="POST">
+<label for="name">Your Name (optional)</label>
+<input type="text" id="name" name="name" placeholder="Jane Doe" />
+
+<label for="email">Your Email (optional)</label>
+<input type="email" id="email" name="_replyto" placeholder="you@example.com" />
+
+<label for="question">Question</label>
+<textarea id="question" name="question" required placeholder="Type your question here..."></textarea>
+
+<button type="submit">Send</button>
+<p class="msg" id="msg"></p>
+</form>
+
+<script>
+const form = document.getElementById('questionForm');
+const msg = document.getElementById('msg');
+
+form.addEventListener('submit', async (e) => {
+e.preventDefault();
+msg.textContent = 'Sending...';
+try {
+const response = await fetch(form.action, {
+method: 'POST',
+body: new FormData(form),
+headers: { 'Accept': 'application/json' }
+});
+if (response.ok) {
+msg.textContent = 'Thank you! Your question has been sent.';
+form.reset();
+} else {
+msg.textContent = 'Oops! There was a problem sending your message.';
+}
+} catch (error) {
+msg.textContent = 'Error sending your message. Please try again later.';
+}
+});
+</script>
 
 
 <!-- count the number of visitors -->
