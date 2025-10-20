@@ -375,13 +375,13 @@ body: new FormData(form),
 headers: { 'Accept': 'application/json' }
 });
 if (response.ok) {
-msg.textContent = 'Thank you! Your question has been sent.';
+msg.textContent = 'با تشکر، پیام شما ارسال شد.';
 form.reset();
 } else {
-msg.textContent = 'Oops! There was a problem sending your message.';
+msg.textContent = 'در ارسال پیام شما مشکلی بوجود آمد.';
 }
 } catch (error) {
-msg.textContent = 'Error sending your message. Please try again later.';
+msg.textContent = 'خطا در ارسال پیام. لطفا پیام خود را دوباره ارسال کنید.';
 }
 });
 </script>
