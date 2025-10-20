@@ -50,9 +50,18 @@
             }
             form { display: flex; flex-direction: column; gap: 12px; }
             label { font-weight: 600; }
-            input, textarea { padding: 8px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+            input, textarea { padding: 8px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; width: 50%; }
             textarea { min-height: 150px; resize: vertical; }
-            button { background-color: #007acc; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+            button {
+                background-color: #007acc;
+                color: white;
+                border: none;
+                padding: 6px 12px; /* smaller button */
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                align-self: flex-start; /* left-align button */
+            }
             button:hover { background-color: #005fa3; }
             .msg { margin-top: 10px; font-size: 0.95rem; color: green; }
     
